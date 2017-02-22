@@ -1,6 +1,6 @@
 #!/bin/bash
 LOG_FILE=~/HexoBlogAutoUpdate.log
-echo "----------------------------------------" >> $LOG_FILE
+echo "========================================" >> $LOG_FILE
 echo $(date +%y_%m_%d_%H_%I_%T) >> $LOG_FILE
 echo "----------------------------------------" >> $LOG_FILE
 if [ $1 ] ; then        
@@ -13,19 +13,23 @@ else
     TAR_DIR=~/HexoBlog
     echo "use default dir as target dir : $TAR_DIR" >> $LOG_FILE
 fi 
+echo "----------------------------------------" >> $LOG_FILE
 if [ -d $TAR_DIR ] ; then 
     echo "$TAR_DIR is a dir,try update" >> $LOG_FILE
-    cd $TAR_DIR 
-    echo "----------Begin Git Pull----------" >> $LOG_FILE
+    cd $TAR_DIR
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
     git pull >> $LOG_FILE
-    echo "----------End Git Pull----------" >> $LOG_FILE
-    echo "----------Begin hexo g----------" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
     hexo g >> $LOG_FILE
-    echo "----------End hexo g----------" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
 else
     echo "$TAR_DIR is not a dir,do nothing" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
+    echo "nothing to pull" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
+    echo "nothing to generate" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
 fi
 echo "----------------------------------------" >> $LOG_FILE
 echo $(date +%y_%m_%d_%H_%I_%T) >> $LOG_FILE
-echo "----------------------------------------" >> $LOG_FILE
 echo "========================================" >> $LOG_FILE
