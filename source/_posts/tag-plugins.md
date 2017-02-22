@@ -37,8 +37,8 @@ Every interaction is both precious and an opportunity to delight.
 
 ## Example 2.1 : A plain code block
 
-{% codeblock [title] [lang:language] [url] [link text] %}
-code snippet
+{% codeblock %}
+alert('Hello World!');
 {% endcodeblock %}
 
 ## Example 2.2 : Specifying the language
