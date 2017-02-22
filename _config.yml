@@ -22,7 +22,7 @@ social:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://baochen.name
+url: http://baochen.name:4000
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
