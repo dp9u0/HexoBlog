@@ -4,7 +4,7 @@ echo $(date +%y_%m_%d_%H_%I_%T) >> ~/HexoBlogPull.log
 echo "----------------------------------------" >> ~/HexoBlogPull.log
 cd ~/HexoBlog
 echo "----------Begin Git Pull----------" >> ~/HexoBlogPull.log
-git pull >> /home/ubuntu/HexoBlogPull.log
+git pull >> ~/HexoBlogPull.log
 echo "----------End Git Pull----------" >> ~/HexoBlogPull.log
 echo "----------Begin hexo g----------" >> ~/HexoBlogPull.log
 hexo g >> ~/HexoBlogPull.log
