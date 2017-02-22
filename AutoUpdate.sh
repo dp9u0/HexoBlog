@@ -24,7 +24,7 @@ if [ -d $TAR_DIR ] ; then
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
     hexo g >> $LOG_FILE
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    hexo d >> $LOG_FILE
+    # hexo d >> $LOG_FILE
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
 else
     echo "$TAR_DIR is not a dir,do nothing" >> $LOG_FILE
