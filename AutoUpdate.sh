@@ -20,15 +20,14 @@ if [ -d $TAR_DIR ] ; then
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
     git pull >> $LOG_FILE
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
+    hexo clean >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
     hexo g >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
+    hexo d >> $LOG_FILE
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
 else
     echo "$TAR_DIR is not a dir,do nothing" >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "nothing to pull" >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "nothing to generate" >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
 fi
 echo "----------------------------------------" >> $LOG_FILE
 echo $(date +%y_%m_%d_%H_%I_%T) >> $LOG_FILE
