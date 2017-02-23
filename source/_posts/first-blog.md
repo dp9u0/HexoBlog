@@ -367,5 +367,5 @@ hexo d
 ```
 
 这些也可以添加到AutoUpdate.sh脚本中，这样我只需要在自己的个人电脑上hexo new ,编辑自己的网站，然后git commit 提交，再执行git push到推送到 将源码推送到github上。这样就可以随时编辑自己的网站了。
-部署在云服务器上的[网站](baochen.name:4000) 和[github.io](dp9u0.github.io) 上的内容，都会自动更新了！
+部署在云服务器上的[网站](http://baochen.name:4000) 和[github.io](https://dp9u0.github.io) 上的内容，都会自动更新了！
 
