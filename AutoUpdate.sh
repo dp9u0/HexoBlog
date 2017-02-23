@@ -1,8 +1,15 @@
 #!/bin/bash
-LOG_FILE=~/HexoBlogAutoUpdate.log
-DEFAULT_DIR=~/HexoBlog
+# import path
+DEFAULT_DIR=$HOME/HexoBlog
 echo "========================================" 
 echo $(date +%y_%m_%d_%H_%I_%T) 
+echo "----------------------------------------" 
+echo "HOME : $HOME"
+if [ -f $HOME/.profile ] ; then
+. ~/.profile
+fi
+echo "PATH : $PATH"
+echo `whereis hexo`
 echo "----------------------------------------" 
 if [ $1 ] ; then        
     echo "first argument is not empty : $1" 
@@ -18,25 +25,18 @@ echo "----------------------------------------"
 if [ -d $TAR_DIR ] ; then 
     echo "$TAR_DIR is a dir,try update" 
     cd $TAR_DIR
-    echo "++++++++++++++++++++++++++++++++++++++++" 
-    echo "::::::::::::::begin git pull" 
+    echo "++++++++++++++begin git pull++++++++++++" 
     git pull 
-    echo "++++++++++++++++++++++++++++++++++++++++" 
-    echo "::::::::::::::begin  hexo clean" 
+    echo "++++++++++++++begin  hexo clean+++++++++"
     hexo clean 
-    echo "++++++++++++++++++++++++++++++++++++++++" 
-    echo "::::::::::::::begin  hexo generate" 
+    echo "++++++++++++++begin  hexo generate+++++++"
     hexo g 
-    echo "++++++++++++++++++++++++++++++++++++++++" 
-    echo "::::::::::::::begin hexo deploy" 
+    echo "++++++++++++++begin hexo deploy+++++++++"
     hexo d 
-    echo "++++++++++++++++++++++++++++++++++++++++" 
-    echo "::::::::::::::begin killall hexo" 
+    echo "++++++++++++++begin killall hexo++++++++" 
     killall hexo 
-    echo "++++++++++++++++++++++++++++++++++++++++" 
-    echo "::::::::::::::begin hexo server" 
-    hexo server &
-    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "++++++++++++++begin hexo server+++++++++"
+    hexo server &   
 else
     echo "$TAR_DIR is not a dir,do nothing" 
 fi
