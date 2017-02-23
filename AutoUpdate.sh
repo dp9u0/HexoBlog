@@ -1,44 +1,45 @@
 #!/bin/bash
 LOG_FILE=~/HexoBlogAutoUpdate.log
-echo "========================================" >> $LOG_FILE
-echo $(date +%y_%m_%d_%H_%I_%T) >> $LOG_FILE
-echo "----------------------------------------" >> $LOG_FILE
+DEFAULT_DIR=~/HexoBlog
+echo "========================================" 
+echo $(date +%y_%m_%d_%H_%I_%T) 
+echo "----------------------------------------" 
 if [ $1 ] ; then        
-    echo "first argument is not empty : $1" >> $LOG_FILE
+    echo "first argument is not empty : $1" 
     TAR_DIR=$1 
-    echo "use first argument as target dir : $TAR_DIR" >> $LOG_FILE
+    echo "use first argument as target dir : $TAR_DIR" 
 else
-    echo "first argument is empty" >> $LOG_FILE  
-    # use  ~/HexoBlog as the default dir    
-    TAR_DIR=~/HexoBlog
-    echo "use default dir as target dir : $TAR_DIR" >> $LOG_FILE
+    echo "first argument is empty"   
+    # use $DEFAULT_DIR as the target dir    
+    TAR_DIR=$DEFAULT_DIR
+    echo "use default dir as target dir : $TAR_DIR" 
 fi 
-echo "----------------------------------------" >> $LOG_FILE
+echo "----------------------------------------" 
 if [ -d $TAR_DIR ] ; then 
-    echo "$TAR_DIR is a dir,try update" >> $LOG_FILE
+    echo "$TAR_DIR is a dir,try update" 
     cd $TAR_DIR
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "::::::::::::::begin git pull" >> $LOG_FILE
-    git pull >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "::::::::::::::begin  hexo clean" >> $LOG_FILE
-    hexo clean >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "::::::::::::::begin  hexo generate" >> $LOG_FILE
-    hexo g >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "::::::::::::::begin hexo deploy" >> $LOG_FILE
-    hexo d >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "::::::::::::::begin killall hexo" >> $LOG_FILE
-    killall hexo >> $LOG_FILE
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
-    echo "::::::::::::::begin hexo server" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "::::::::::::::begin git pull" 
+    git pull 
+    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "::::::::::::::begin  hexo clean" 
+    hexo clean 
+    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "::::::::::::::begin  hexo generate" 
+    hexo g 
+    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "::::::::::::::begin hexo deploy" 
+    hexo d 
+    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "::::::::::::::begin killall hexo" 
+    killall hexo 
+    echo "++++++++++++++++++++++++++++++++++++++++" 
+    echo "::::::::::::::begin hexo server" 
     hexo server &
-    echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
+    echo "++++++++++++++++++++++++++++++++++++++++" 
 else
-    echo "$TAR_DIR is not a dir,do nothing" >> $LOG_FILE
+    echo "$TAR_DIR is not a dir,do nothing" 
 fi
-echo "----------------------------------------" >> $LOG_FILE
-echo $(date +%y_%m_%d_%H_%I_%T) >> $LOG_FILE
-echo "========================================" >> $LOG_FILE
+echo "----------------------------------------" 
+echo $(date +%y_%m_%d_%H_%I_%T) 
+echo "========================================" 
