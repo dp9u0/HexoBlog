@@ -33,6 +33,7 @@ if [ -d $TAR_DIR ] ; then
     echo "::::::::::::::begin killall hexo" >> $LOG_FILE
     killall hexo >> $LOG_FILE
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
+    echo "::::::::::::::begin hexo server" >> $LOG_FILE
     hexo server &
     echo "++++++++++++++++++++++++++++++++++++++++" >> $LOG_FILE
 else
