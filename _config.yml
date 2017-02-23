@@ -87,5 +87,5 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/dp9u0/dp9u0.github.io.git
+  repo: git@github.com:dp9u0/dp9u0.github.io.git
   branch: master
