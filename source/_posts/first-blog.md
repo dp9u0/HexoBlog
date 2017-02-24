@@ -1,6 +1,6 @@
 ---
 title: hexo搭建个人博客
-date: 2017-02-22 22:39:56
+date: 2017-02-22 22::56:56
 categories: 
 - knowledge
 tags:

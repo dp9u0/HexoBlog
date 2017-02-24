@@ -1,6 +1,6 @@
 ---
 title: 关于crontab执行脚本环境变量问题
-date: 2017-02-24 11:24:37
+date: 2017-02-24 23:05:37
 categories:
 - knowledge
 tags:
