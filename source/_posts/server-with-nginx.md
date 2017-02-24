@@ -6,7 +6,9 @@ categories:
 tags:
 - nginx
 ---
-hexo server 不太好用，决定使用nginx
+hexo server 不太好用，决定使用nginx。
+
+<!-- more -->
 
 首先在服务器上安装nginx，以ubuntu为例。使用apt-get安装比较方便，节省很多配置。
 
