@@ -171,8 +171,8 @@ toc:
 
 sidebar:
   # Sidebar Position, available value: left | right
-  #position: left
-  position: right
+  position: left
+  #position: right
 
   # Sidebar Display, available value:
   #  - post    expand on posts automatically. Default.
@@ -372,9 +372,9 @@ vkontakte_api:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: SLCpVzYsbaTnUbePQ8QdwM7H-gzGzoHsz
+  app_key: 7YwkWjRTuQ81D5dia687Ed6C
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
@@ -396,7 +396,7 @@ busuanzi_count:
 
 
 # Tencent analytics ID
-# tencent_analytics:
+tencent_analytics: 60877384
 
 # Tencent MTA ID
 # tencent_mta:
