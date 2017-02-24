@@ -1,5 +1,5 @@
 ---
-title: 使用Nginx运行服务器
+title: 使用Nginx运行网站
 date: 2017-02-24 15:18:17
 categories:
 - knowledge
