@@ -1,14 +1,17 @@
 #!/bin/bash
-# import path
+# 如果使用cron 定时call 更新脚本 
+# 会出现 一些定义在profile 中的环境变量无法引入的情况
+# 可以单独建立一个壳脚本 添加一些必要的变量 再呼叫当前脚本 AutoUpdate.sh
+# . /etc/profile
+# . ~/.profile
+# . ~/<somepath>/AutoUpdate.sh # call this srcipt
 DEFAULT_DIR=$HOME/HexoBlog
 echo "========================================" 
 echo $(date +%y_%m_%d_%H_%I_%T) 
 echo "----------------------------------------" 
 echo "HOME : $HOME"
-if [ -f $HOME/.profile ] ; then
-. ~/.profile
-fi
 echo "PATH : $PATH"
+echo "NODE_HOME : $NODE_HOME"
 echo `whereis hexo`
 echo "----------------------------------------" 
 if [ $1 ] ; then        
