@@ -8,8 +8,8 @@ tags:
 ---
 
 {% cq %} 
-正在学习前端知识，发现了一个很好玩的基于 Node.js的高效的静态站点生成框架[Hexo](https://hexo.io/zh-cn/),使用 Markdown 编写文章,于是用来搭建自己的blog。
-第一篇就用来介绍如何一步一步完成搭建的。
+发现一个基于 Node.js的高效的静态站点生成框架[Hexo](https://hexo.io/zh-cn/),使用 Markdown 编写文章,于是用来搭建自己的网站。
+接下来介绍如何一步一步完成搭建的。
 {% endcq %}
 
 <!-- more -->

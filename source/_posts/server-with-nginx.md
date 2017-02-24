@@ -1,6 +1,6 @@
 ---
 title: 使用Nginx运行网站
-date: 2017-02-24 23:02:17
+date: 2017-02-24 23:10:17
 categories:
 - knowledge
 tags:
