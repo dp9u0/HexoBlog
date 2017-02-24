@@ -36,10 +36,10 @@ if [ -d $TAR_DIR ] ; then
     hexo g 
     echo "++++++++++++++begin hexo deploy+++++++++"
     hexo d 
-    echo "++++++++++++++begin killall hexo++++++++" 
-    killall hexo 
-    echo "++++++++++++++begin hexo server+++++++++"
-    hexo server &   
+    #echo "++++++++++++++begin killall hexo++++++++" 
+    #killall hexo 
+    #echo "++++++++++++++begin hexo server+++++++++"
+    #hexo server &   
 else
     echo "$TAR_DIR is not a dir,do nothing" 
 fi
