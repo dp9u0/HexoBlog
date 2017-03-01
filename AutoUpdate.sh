@@ -7,7 +7,7 @@
 # . ~/<somepath>/AutoUpdate.sh # call this srcipt
 DEFAULT_DIR=$HOME/HexoBlog
 echo "========================================" 
-echo $(date +%y_%m_%d_%H_%I_%T) 
+echo $(date +%y_%m_%d_%T) 
 echo "----------------------------------------" 
 echo "HOME : $HOME"
 echo "PATH : $PATH"
@@ -44,5 +44,5 @@ else
     echo "$TAR_DIR is not a dir,do nothing" 
 fi
 echo "----------------------------------------" 
-echo $(date +%y_%m_%d_%H_%I_%T) 
+echo $(date +%y_%m_%d_%T) 
 echo "========================================" 
