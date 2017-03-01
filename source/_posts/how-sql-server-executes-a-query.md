@@ -65,7 +65,7 @@ ORDER BY 'Cached Size (MB)' DESC
 
 {% codeblock lang:sql %}
 DBCC DROPCLEANBUFFERS
-{% endcodeblock}
+{% endcodeblock %}
 
 查询脏页
 
@@ -75,7 +75,7 @@ FROM sys.dm_os_buffer_descriptors
 WHERE is_modified =1
 GROUP BY db_name(database_id)
 ORDER BY count(page_id) DESC
-{% endcodeblock}
+{% endcodeblock %}
 
 # 参考文献
 
