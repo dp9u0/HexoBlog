@@ -8,6 +8,9 @@ tags:
 date: 2017-03-01 21:53:47
 ---
 
+SQL Server 基本存储单位是页，一个页大小为8K。
+页分为不同的类型。
+
 <!--more-->
 
 {% codeblock lang:sql %}
