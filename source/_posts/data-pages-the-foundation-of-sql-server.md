@@ -261,3 +261,7 @@ GO
 从第11页开始，你可以看到各种不同的页混合在一起，像数据页，索引页，IAM页，行溢出页和LOB页等等。数据页的页类型是1，索引页的页类型是2，行溢出（Row-overflow）页和LOB页的页类型是3。数据页和索引页是以同样结构保存的。SQL Server：理解数据页结构。
 
 行溢出（Row-overflow）页用来存储不能在一页里保存的数据。LOB页用来保存大型对象，并不作为行数据的一部分来保存。
+
+
+[存储引擎揭秘](http://www.cnblogs.com/wcyao/archive/2011/06/28/2092241.html)
+[SQL Server 存储](http://www.cnblogs.com/woodytu/tag/SQL%20Server%20%E5%AD%98%E5%82%A8/)
