@@ -7,7 +7,9 @@ tags:
   - performance tuning 
 date: 2017-03-01 20:35:53
 ---
+
 根据SQLpassion推送的 SQLpassion Performance Tuning Training Plan - Week 1: How SQL Server executes a Query。记录一下对查询执行的了解。
+
 <!--more-->
 
 # 提交查询
@@ -17,6 +19,7 @@ date: 2017-03-01 20:35:53
 # 命令解析器(Command Parser)处理
 
 命令解释器接收到查询会做以下工作：
+
 * 检查
   * 语法正确
   * 数据库表存在
@@ -36,6 +39,7 @@ date: 2017-03-01 20:35:53
 * 缓存区管理器(Buffer Manager)检查它是否已在数据缓存(data cache)，如果没找到的话就从磁盘加载到缓存。
   * 当请求的页面已经被存在缓冲池时,页会被立即读取,称为逻辑读。
   * 如果请求的页没存在缓冲池,缓冲区管理器会发起异步I/O操作把请求的页存储子系统中读到缓冲池,称为物理读。
+  
 # 修改数据
 
 当修改数据(INSERT,DELETE,UPDATE)时，需要与事务管理器进行交互，事务管理器把执行事务中描述的改变通过事务日志写到事务文件。
