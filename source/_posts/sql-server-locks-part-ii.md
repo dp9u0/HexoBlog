@@ -89,8 +89,8 @@ GO
 --因为没有主键所以要指定非聚集索引
 CREATE NONCLUSTERED INDEX PK_Employee_EmployeeID_Demo_Heap ON Employee_Demo_Heap( [EmployeeID] ASC)
 --添加非聚集索引
-CREATE NONCLUSTERED INDEX IX_Employee_ManagerID_Demo_Heap ON Employee_Demo_BTree([ManagerID] ASC)
-CREATE NONCLUSTERED INDEX IX_Employee_ModifiedDate_Demo_Heap ON Employee_Demo_BTree( [ModifiedDate] ASC)
+CREATE NONCLUSTERED INDEX IX_Employee_ManagerID_Demo_Heap ON Employee_Demo_Heap([ManagerID] ASC)
+CREATE NONCLUSTERED INDEX IX_Employee_ModifiedDate_Demo_Heap ON Employee_Demo_Heap( [ModifiedDate] ASC)
 --插入数据
 INSERT [dbo].[Employee_Demo_Heap]
   SELECT [BusinessEntityID],
