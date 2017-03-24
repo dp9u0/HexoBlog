@@ -8,6 +8,10 @@ tags:
 date: 2017-03-24 14:23:54
 ---
 
+继续学习sql server锁.
+
+<!--more-->
+
 # 准备
 
 下载巨硬提供的[AdventureWorks](https://msftdbprodsamples.codeplex.com/),下载的是[2014版本](https://msftdbprodsamples.codeplex.com/releases/view/125550).是bak文件，直接恢复数据库就可以了.
