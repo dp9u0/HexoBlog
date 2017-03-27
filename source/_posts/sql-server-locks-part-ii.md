@@ -211,7 +211,7 @@ ORDER BY spid,database_name,lock_object_name,lock_resource
 
 ### 实验1
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --select动作要申请的锁(1)
 --聚集表
@@ -247,7 +247,7 @@ WHERE [EmployeeID]=3
 
 ### 实验2
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --select动作要申请的锁(2)
 --堆表
@@ -285,7 +285,7 @@ WHERE [EmployeeID]=3
 
 ### 实验3
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --select动作要申请的锁(3)
 --聚集表
@@ -322,7 +322,7 @@ WHERE [EmployeeID] IN(3,30,200)
 
 ### 实验4
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 --select动作要申请的锁(4)
 --堆表
 
@@ -364,7 +364,7 @@ WHERE [EmployeeID] IN(3,30,200)
 
 ### 实验5
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --会话1
 
@@ -417,7 +417,7 @@ WHERE [EmployeeID] IN(3,80,200)
 
 ### 实验6
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --会话1
 BEGIN TRAN update_heap_6
@@ -479,7 +479,7 @@ WHERE [EmployeeID] IN(3,80,200)
 
 ### 实验1
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 --UPDATE动作要申请的锁(1)
 
 USE [AdventureWorks] 
@@ -516,7 +516,7 @@ WHERE [EmployeeID] IN(3,30,200)
 
 ### 实验2
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --UPDATE动作要申请的锁(2)
 
@@ -545,7 +545,7 @@ WHERE [EmployeeID] IN(3,30,200)
 
 ### 实验3
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --UPDATE动作要申请的锁(3)
 
@@ -604,7 +604,7 @@ WHERE [EmployeeID] IN(3,30,200)
 
 ### 实验1
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --delete动作要申请的锁（1）
 
@@ -631,7 +631,7 @@ WHERE [LoginID]='adventure-works\kim1'
 
 ### 实验2
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --delete动作要申请的锁（2）
 
@@ -683,7 +683,7 @@ WHERE [LoginID]='adventure-works\tete0'
 
 ### 实验1
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --INSERT 要申请的锁（1）
 
@@ -742,7 +742,7 @@ SELECT
 
 ### 实验2
 
-{% codeblocl lang:sql%}
+{% codeblock lang:sql%}
 
 --INSERT 要申请的锁（2）
 
