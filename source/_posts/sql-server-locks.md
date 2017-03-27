@@ -215,20 +215,24 @@ SQLSERVER通过先写入日志的方式，保证所有提交了的事务在硬�
 |可序列化                |否                 |否                            |否|
 
 ### 未提交读（read uncommitted）
+
 指定语句可以读取已由其他事务修改但尚未提交的行。也就是说，允许脏读
 在read uncommitted级别运行的事务，不会发出共享锁来防止其他事务修改当前事务读取的数据。read committed事务也不会被排他锁阻塞。共享锁会禁止当前事务读取其他事务已修改但尚未提交的行。设置此选项后，此事务可以读取其他事务未提交的修改。在事务结束之前，其他事务可以更改数据中的值。该选项的作用与在事务内所有select语句中的所有表上设置nolock相同。这是隔离级别中限制最少的级别。
 换句话说，未提交读的意思也就是：读的时候不申请共享锁。所以他不会被其他人的排他锁阻塞，他也不会阻塞别人申请排他锁
 
 ### 已提交读（read committed）
+
 指定语句不能读取已由其他事务修改但尚未提交的数据.这样可以避免脏读。其他事务可以在当前事务的各个语句之间更改数据，从而产生不可重复读取数据和幻象数据。该选项是SQL的默认设置。
 数据库引擎会在读的时候使用共享锁防止其他事务在当前事务执行读取操作期间修改行。共享锁还会阻止语句在其他事务完成之前读取由这些事务修改的行。但是，语句运行完毕后便会释放共享锁，而不是等到事务提交的时候但是SQL默认设置是每一语句运行完毕就提交事务。
 
 ### 可重复读（repeatable read）
+
 指定语句不能读取已由其他事务修改但尚未提交的行，并且指定，其他任何事务都不能在当前事务完成之前修改由当前事务读取的数据。
 在这个隔离级别上，对事务中的每个语句所读取的全部数据都设置了共享锁，并且该共享锁一直保持到事务完成为止。这样可以防止其他事务修改当前事务读取的任何行。其他事务可以插入与当前事务所发出语句的搜索条件相匹配的新行。如果当前事务随后重试执行该语句，他会检索新行，从而产生幻读。
 由于共享锁一直保持到事务结束，而不是每个语句结束时释放，所以并发性低于默认的read committed隔离级别。此选项只在必要时使用。
 
 ### 可序列化（serializable）
+
 可序列化的要求：
 语句不能读取已由其他事务修改但尚未提交的数据。
 任何其他事务都不能在当前事务完成之前修改由当前事务读取的数据在当前事务完成之前，其他事务不能使用当前事务中任何语句读取的键值插入新行。
@@ -239,7 +243,7 @@ SQLSERVER其实通过对共享锁申请和释放机制的不同处理，来实�
 
 不同隔离级别对共享锁的不同处理方式：
 
-|隔离级别            |是否申请共享锁          |何时释放              有无范围锁|
+|隔离级别            |是否申请共享锁          |何时释放             | 有无范围锁|
 |:--------------------:| :-----------------: |:-----------------: |:-----------------: |
 |未提交读                |不申请                |无                    |无|
 |已提交读                |申请                  |当前语句做完时         |无|
@@ -248,132 +252,4 @@ SQLSERVER其实通过对共享锁申请和释放机制的不同处理，来实�
 
 也就是说，事务隔离级别越高，共享锁被持有的时间越长。而可序列化还要申请粒度更高的范围锁，并一直持有到事务结束。所以，如果阻塞发生在共享锁上面，可以通过降低事务隔离级别得到缓解。
 
-需要说明的是，SQL在处理排他锁的时候，4个事务隔离级别都是一样的。都是在修改的时候申请直到事务提交的时候释放（而不是语句结束以后就立即释放）。如果阻塞是发生在排他锁上面，
-是不能通过降低事务隔离级别得到缓解的。
-
-# 监视锁申请、持有和释放
-
-{% codeblock lang:sql %}
-
-USE [AdventureWorks2014] --要查询申请锁的数据库
-GO
-SELECT
-[request_session_id],
-c.[program_name],
-DB_NAME(c.[dbid]) AS dbname,
-[resource_type],
-[request_status],
-[request_mode],
-[resource_description],OBJECT_NAME(p.[object_id]) AS objectname,
-p.[index_id]
-FROM sys.[dm_tran_locks] AS a LEFT JOIN sys.[partitions] AS p
-ON a.[resource_associated_entity_id]=p.[hobt_id]
-LEFT JOIN sys.[sysprocesses] AS c ON a.[request_session_id]=c.[spid]
-WHERE c.[dbid]=DB_ID()
-ORDER BY [request_session_id],[resource_type]
-
-{% endcodeblock %}
-
-
-{% codeblock lang:sql %}
-SELECT 
-     GETDATE()AS 'current_time', 
-     es.session_id, 
-     db_name(sp.dbid)AS database_name, 
-     es.status, 
-     substring((SELECT text
-        FROM sys.dm_exec_sql_text(sp.sql_handle)), 1, 128)AS sql_text, 
-     es.host_name, 
-     es.login_time, 
-     es.login_name, 
-     es.program_name, 
-     Convert(float, Round((IsNull(es.cpu_time, 0.0)/1000.00), 0))AS  cpu_time_in_seconds, 
-     Convert(float, Round((IsNull(es.lock_timeout, 0.0)/1000.00), 0))AS lock_timeout_in_seconds, 
-     tl.resource_type AS lock_type, 
-     tl.request_mode, 
-     tl.resource_associated_entity_id, 
-     CASE 
-       WHEN tl.resource_type = 'OBJECT'
-           THEN OBJECT_NAME(tl.resource_associated_entity_id)
-       WHEN tl.resource_type IN ('KEY', 'PAGE', 'RID')
-            THEN (SELECT object_name(object_id)
-                FROM sys.partitions  ps1
-                WHERE ps1.hobt_id = tl.resource_associated_entity_id)
-       ELSE 'n.a.' 
-     END AS object_name, 
-     tl.request_status, 
-     ec.connect_time, 
-     ec.net_transport, 
-     ec.client_net_address, 
-     er.connection_id, 
-     CASE er.blocking_session_id
-       WHEN 0  THEN 'Not Blocked'
-       WHEN-2 THEN 'Orphaned Distributed Transaction'
-       WHEN-3 THEN 'Deferred Recovery Transaction'
-       WHEN-4 THEN 'Latch owner not determined'
-       ELSE ''
-     END AS blocking_type, 
-     er.wait_type, 
-     Convert(float, Round((IsNull(er.wait_time, 0.0)/1000.00), 0))AS wait_time_in_seconds, 
-     er.percent_complete, 
-     er.estimated_completion_time, 
-     Convert(float, Round((IsNull(er.total_elapsed_time, 0.0)/1000.00), 0))AS total_elapsed_time_in_seconds, 
-     CASE er.transaction_isolation_level
-       WHEN 0 THEN 'Unspecified'
-       WHEN 1 THEN 'ReadUncomitted'
-       WHEN 2 THEN 'ReadCommitted'
-       WHEN 3 THEN 'Repeatable'
-       WHEN 4 THEN 'Serializable'
-       WHEN 5 THEN 'Snapshot'
-       ELSE ''
-     END transaction_isolation_level          
-FROM  master.sys.dm_exec_sessions    es
-     INNER JOIN master.sys.sysprocesses        sp
-        ON sp.spid = es.session_id
-      LEFT JOIN master.sys.dm_exec_connections ec
-        ON ec.session_id = es.session_id
-      LEFT JOIN master.sys.dm_exec_requests    er
-        ON er.session_id = es.session_id
-      LEFT JOIN master.sys.dm_tran_locks       tl
-        ON tl.request_session_id = es.session_id
-WHERE  es.session_id <> @@spid
-AND es.session_id = es.session_id
-AND sp.dbid = db_id()/* CURRENT DB TO MONITOR */
-AND tl.resource_type <> 'DATABASE';
-{% endcodeblock %}
-
-{% codeblock lang:sql %}
-SELECT CASE dtl.request_session_id
-		WHEN - 2
-			THEN 'orphaned distributed transaction'
-		WHEN - 3
-			THEN 'deferred recovery transaction'
-		ELSE dtl.request_session_id
-		END AS spid
-	,db_name(dtl.resource_database_id) AS databasename
-	,so.NAME AS lockedobjectname
-	,dtl.resource_type AS lockedresource
-	,dtl.resource_description AS lockedresourceinfo
-	,dtl.request_mode AS locktype
-	,st.TEXT AS sqlstatementtext
-	,es.login_name AS loginname
-	,es.host_name AS hostname
-	,CASE tst.is_user_transaction
-		WHEN 0
-			THEN 'system transaction'
-		WHEN 1
-			THEN 'user transaction'
-		END AS user_or_system_transaction
-	,at.NAME AS transactionname
-	,dtl.request_status
-FROM sys.dm_tran_locks dtl
-JOIN sys.partitions sp ON sp.hobt_id = dtl.resource_associated_entity_id
-JOIN sys.objects so ON so.object_id = sp.object_id
-JOIN sys.dm_exec_sessions AS es ON es.session_id = dtl.request_session_id
-JOIN sys.dm_tran_session_transactions AS tst ON es.session_id = tst.session_id
-JOIN sys.dm_tran_active_transactions at ON tst.transaction_id = at.transaction_id
-JOIN sys.dm_exec_connections ec ON ec.session_id = es.session_id
-CROSS APPLY sys.dm_exec_sql_text(ec.most_recent_sql_handle) AS st
-WHERE resource_database_id = db_id()
-ORDER BY dtl.request_session_id
-{% endcodeblock %}
+需要说明的是，SQL在处理排他锁的时候，4个事务隔离级别都是一样的。都是在修改的时候申请直到事务提交的时候释放（而不是语句结束以后就立即释放）。如果阻塞是发生在排他锁上面，是不能通过降低事务隔离级别得到缓解的。
