@@ -7,7 +7,7 @@ tags:
 - hexo
 ---
 
-{% cq %} 
+{% cq %}
 发现一个基于 Node.js的高效的静态站点生成框架[Hexo](https://hexo.io/zh-cn/),使用 Markdown 编写文章,于是用来搭建自己的网站。
 接下来介绍如何一步一步完成搭建的。
 {% endcq %}
@@ -15,6 +15,7 @@ tags:
 <!-- more -->
 
 # 目录
+
 * [准备](#准备)
 * [构建](#构建)
     * [创建](#创建)
@@ -29,18 +30,25 @@ tags:
 # 准备
 
 需要在电脑中安装以下：
+
 * [node.js](https://nodejs.org/en)
 
 node 安装后 自带 npm 包管理器。安装方式请参考官网。
+
 * [git](https://git-scm.com)
 
 git 用于创建hexo项目、更换主题、管理创建的hexo项目源码以及部署到github.io使用。安装方式请参考官网。
+
 * [hexo-cli](https://hexo.io/)
 
 用于创建、管理、发布hexo项目。使用npm包管理器安装：
-```
+
+``` CSharp
+
 npm install -g hexo-cli
+
 ```
+
 # 构建
 
 安装完 node 、git 以及hexo-cli 后，就可以开始构建hexo blog了。
