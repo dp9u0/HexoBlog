@@ -42,4 +42,4 @@ db.json
 *.log
 public/
 .deploy*/
-
+package-lock.json
