@@ -1,10 +1,19 @@
-/* global hexo */
-// Usage: {% exturl text url "title" %}
-// Alias: {% extlink text url "title" %}
+/**
+ * exturl.js | global hexo script.
+ *
+ * Usage:
+ *
+ * {% exturl text url "title" %}
+ * {% extlink text url "title" %}
+ *
+ * If title not defined, url will be used as title.
+ */
 
 'use strict';
 
+/*jshint camelcase: false */
 var util = require('hexo-util');
+/*jshint camelcase: true */
 var htmlTag = util.htmlTag;
 
 var rUrl = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[.\!\/\\w]*))?)/;
@@ -36,11 +45,13 @@ function extURL(args, content) {
   // Delete link URL and text from arguments
   args = args.slice(i + 1);
 
-  // Check if the link should be open in a new window
-  // and collect the last text as the link title
+  // If any arguments exists, collect the last text as the link title,
+  // if not, set title as url.
   if (args.length) {
     var shift = args[0];
     title = args.join(' ');
+  } else {
+    title = item;
   }
 
   var attrs = {
@@ -49,7 +60,6 @@ function extURL(args, content) {
     title: title
   };
 
-  //console.log(url);
   return htmlTag('span', attrs, text.join(' '));
 }
 

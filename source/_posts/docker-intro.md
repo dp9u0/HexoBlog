@@ -2,7 +2,7 @@
 title: docker 入门
 date: 2018-04-08 15:56:31
 categories: 
-- knowledge
+- learning
 tags:
 - docker
 ---
@@ -14,6 +14,8 @@ tags:
 Docker作为一种解决方案，很好的解决了这个问题。
 
 {% endcq %}
+
+<!--more-->
 
 # 目录
 

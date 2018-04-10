@@ -1,7 +1,7 @@
 ---
 title: 离职
 categories:
-  - life
+  - work
 tags:
   - work
 date: 2017-04-20 13:36:37

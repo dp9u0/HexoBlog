@@ -2,7 +2,7 @@
 title: 关于备案后续
 date: 2017-03-01 12:43:22
 categories:
-- knowledge
+- life
 tags:
 - beian
 ---
