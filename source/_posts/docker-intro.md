@@ -325,3 +325,148 @@ docker container cp [containID]:[/path/to/file] .
 ```
 
 # 微服务
+
+## DIY wordpress
+
+```shell
+
+#启动 mysql 镜像
+sudo docker container run \
+  -d \ #后台运行
+  --rm \ #停止后删除
+  --name wordpressdb \ #指定名称
+  --env MYSQL_ROOT_PASSWORD=123456 \  #环境变量
+  --env MYSQL_DATABASE=wordpress \ #环境变量
+  mysql:5.7
+
+# 创建工作目录
+mkdir docker-demo && cd  docker-demo
+
+# 下载 wordpress
+
+wget https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz
+tar -xvf wordpress-4.9.4-zh_CN.tar.gz
+hmod -R 777 wordpress #可写
+
+#基于php镜像创建 安装mysqli的镜像
+vi Dockerfile
+#输入文本 :
+#FROM php:5.6-apache
+#RUN docker-php-ext-install mysqli
+#CMD apache2-foreground
+
+#生成镜像
+docker build -t phpwithmysql .
+
+#启动镜像
+
+sudo docker container run \
+  --rm \
+  --name wordpress \
+  --volume "$PWD/":/var/www/html \ #当前目录映射到container的 /var/www/html
+  --link wordpressdb:mysql \ #连接已有的container并提供别名
+  phpwithmysql
+
+#浏览器查看 http://172.17.0.2/wordpress
+#具体地址根据实际情况替换IP即可
+
+```
+
+## 官方 wordpress 镜像
+
+```shell
+
+#使用mysql镜像 启动container
+sudo docker container run \
+  -d \ #后台运行
+  --rm \ #停止后删除
+  --name wordpressdb \ #指定名称
+  --env MYSQL_ROOT_PASSWORD=123456 \  #环境变量
+  --env MYSQL_DATABASE=wordpress \ #环境变量
+  mysql:5.7
+# 使用官方提供的wordpress镜像启动container
+
+sudo docker container run \
+  -d \
+  -p 127.0.0.2:8080:80 \ 
+  --rm \
+  --name wordpress \
+  --env WORDPRESS_DB_PASSWORD=123456 \
+  --link wordpressdb:mysql \
+  --volume "$PWD/wordpress":/var/www/html \
+  wordpress
+
+#查看container信息
+
+sudo docker container inspect wordpress
+
+#由于做了IP和端口映射 因此可以直接
+#浏览器查看 http://127.0.0.2:8080/wordpress 
+
+```
+
+## Docker Compose
+
+[安装Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+
+```shell
+
+# 启动所有服务
+$ docker-compose up
+# 关闭所有服务
+$ docker-compose stop
+
+cd docker-demo
+vi docker-compose.yml
+
+#输入下面内容
+
+mysql:
+    image: mysql:5.7
+    environment:
+     - MYSQL_ROOT_PASSWORD=123456
+     - MYSQL_DATABASE=wordpress
+web:
+    image: wordpress
+    links:
+     - mysql
+    environment:
+     - WORDPRESS_DB_PASSWORD=123456
+    ports:
+     - "127.0.0.3:8080:80"
+    working_dir: /var/www/html
+    volumes:
+     - wordpress:/var/www/html
+
+# 启动 compose
+
+docker-compose up
+
+#浏览器访问 http://127.0.0.3:8080
+
+#关闭
+docker-compose stop
+
+#移除
+docker-compose rm
+```
+
+# Tips
+
+安装完 Ununtu 建议替换默认源
+
+```shell
+sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/mirrors.163.com\/ubuntu\//g' /etc/apt/sources.list
+#or
+cd /etc/apt-get
+mv sources.list sources.list.bak
+echo deb http://mirrors.163.com/debian/ jessie main non-free contrib >> sources.list
+echo deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib >> sources.list
+echo deb http://mirrors.163.com/debian/ jessie-backports main non-free contrib >> sources.list
+echo deb-src http://mirrors.163.com/debian/ jessie main non-free contrib >> sources.list
+echo deb-src http://mirrors.163.com/debian/ jessie-updates main non-free contrib >> sources.list
+echo deb-src http://mirrors.163.com/debian/ jessie-backports main non-free contrib >> sources.list
+echo deb http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib >> sources.list
+echo deb-src http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib >> sources.list
+
+```
