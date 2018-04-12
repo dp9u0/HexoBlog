@@ -192,7 +192,7 @@ $ docker image build -t koa-demo:0.0.1 .
 如果运行成功，就可以看到新生成的 image 文件koa-demo了。
 
 ```shell
-$ docker image ls
+docker image ls
 ```
 
 docker container run命令会从 image 文件生成容器。
@@ -218,7 +218,6 @@ root@66d80f4aaf1e:/app#
 root@66d80f4aaf1e:/app# node demos/01.js
 #这时，Koa 框架已经运行起来了。打开本机的浏览器，访问 http://127.0.0.1:8000，网页显示"Not Found"，这是因为这个 demo 没有写路由。
 ```
-
 
 这个例子中，Node 进程运行在 Docker 容器的虚拟环境里面，进程接触到的文件系统和网络接口都是虚拟的，与本机的文件系统和网络接口是隔离的，因此需要定义容器与物理机的端口映射（map）。
 现在，在容器的命令行，按下 Ctrl + c 停止 Node 进程，然后按下 Ctrl + d （或者输入 exit）退出容器。此外，也可以用docker container kill终止容器运行。
@@ -388,7 +387,7 @@ sudo docker container run \
 
 sudo docker container run \
   -d \
-  -p 127.0.0.2:8080:80 \ 
+  -p 127.0.0.2:8080:80 \
   --rm \
   --name wordpress \
   --env WORDPRESS_DB_PASSWORD=123456 \
@@ -401,7 +400,7 @@ sudo docker container run \
 sudo docker container inspect wordpress
 
 #由于做了IP和端口映射 因此可以直接
-#浏览器查看 http://127.0.0.2:8080/wordpress 
+#浏览器查看 http://127.0.0.2:8080/wordpress
 
 ```
 
