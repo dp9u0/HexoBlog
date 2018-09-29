@@ -34,4 +34,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run hexo build!
-      - run: hexo g
+      - run: npm run build
