@@ -1,53 +1,51 @@
 ---
+name: Türk
 title:
   archive: Arşiv
   category: Kategori
   tag: Etiket
-  schedule: Plan
-author: Yazar
+  schedule: Program
 menu:
   home: Ana Sayfa
   archives: Arşivler
   categories: Kategoriler
   tags: Etiketler
-  about: Hakkında
-  search: Arama
-  schedule: Plan
+  about: Hakkımda
+  search: Ara
+  schedule: Program
   sitemap: Site Haritası
-  commonweal: Ortak Yarar 404
+  commonweal: Hata 404
 sidebar:
   overview: Genel Bakış
   toc: İçindekiler
+  links: Links
 post:
-  created: Gönderi Oluşturuldu
-  modified: Gönderi Değiştirildi
-  sticky: Sabit
-  posted: Şurada Yayımlandı
+  posted: Yayınlandı
+  edited: Düzenlendi
+  created: Oluşturuldu
+  modified: Değiştirildi
+  edit: Bu gönderiyi düzenle
   in: İçinde
-  more: daha
   read_more: Daha fazla oku
   untitled: Başlıksız
-  toc_empty: Bu gönderinin içindekiler kısmı yok
-  views: Views
-  comments_count: Yorumlar
-  symbols_count: Yazının içerdiği semboller
-  symbols_time: Okuma zamanı
-  total_symbols: İçerilen toplam semboller
-  total_time: Toplam okuma zamanı
-  related_posts: Related Posts
+  sticky: Sabit
+  views: Görünümler
+  related_posts: İlgili Gönderiler
   copyright:
-    author: Gönderi yazarı
-    link: Gönderi linki
-    license_title: Telif Hakkı Uyarısı
-    license_content: "Bu blogda yer alan yazıların hepsi aksine bir ifade olmadığı sürece %s altında lisanslıdır."
-page:
-  totally: Toplamda
-  tags: etiketler
+    author: Gönderiyi yazan
+    link: Gönderi bağlantısı
+    post_author: Written by
+    post_link: This article originally appeared on
+    license_title: Telif Hakkı Bildirimi
+    license_content: "Bu blogdaki tüm makaleler aksi belirtilmediği sürece %s altında lisanslıdır."
+    license_content_reprint: "This article is a reprinted article and has been reprinted with permission. Please indicate the source!"
 footer:
   powered: "%s tarafından desteklenmektedir"
-  theme: Tema
-  total_views: Total Views
-  total_visitors: Total Visitors
+  total_views: Toplam görüntülenme
+  total_visitors: Toplam Ziyaretçi
+widget:
+  github: Follow me on GitHub
+  chat: Chat
 counter:
   tag_cloud:
     zero: Etiket yok
@@ -63,11 +61,13 @@ counter:
     other: "Toplamda %d gönderi."
 state:
   posts: gönderiler
-  pages: sayfalar
   tags: etiketler
   categories: kategoriler
 search:
   placeholder: Aranıyor...
+  empty: "We didn't find any results for the search: %s"
+  hits_time: "%s results found in %s ms"
+  hits: "%s results found"
 cheers:
   um: Um..
   ok: Tamam
@@ -79,14 +79,25 @@ keep_on: Gönderiye devam.
 symbol:
   comma: ", "
   period: ". "
-  colon: ":"
+  colon: ": "
 reward:
   donate: Bağış
-  wechatpay: WeChat Ödeme
+  wechatpay: WeChat Pay
   alipay: Alipay
+  paypal: PayPal
   bitcoin: Bitcoin
-gitmentbutton: Gitment'ın yorumlarını göster
+  comment: Buy me a coffee
+follow_me:
+  welcome: Diğer yayıncılık kanallarıma hoşgeldiniz
 accessibility:
-  nav_toggle: Toggle navigation bar
-  prev_page: Previous page
-  next_page: Next page
+  nav_toggle: Gezinti çubuğunu değiştir
+  prev_page: Önceki sayfa
+  next_page: Sonraki sayfa
+  back_to_top: Back to top
+  select_lang: Select language
+symbols_count_time:
+  count: Makalede sayılan semboller
+  count_total: Sayılan toplam semboller
+  time: Okuma Süresi
+  time_total: Toplamda Okuma Süresi
+  time_minutes: dk.
