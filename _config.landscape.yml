@@ -12,8 +12,7 @@ fancybox: true
 recent_posts_limits: 5
 # Footer
 copyright: |-
-  <a href="https://beian.miit.gov.cn/" target="_blank">ICP备案号：沪ICP备17007510号</a>
-  <a href="https://beian.miit.gov.cn/" target="_blank">ICP备案号：沪ICP备17007510号-1</a>
+  <a href="https://beian.miit.gov.cn/" target="_blank">ICP备案号：沪ICP备17007510号</a></br><a href="https://beian.miit.gov.cn/" target="_blank">ICP备案号：沪ICP备17007510号-1</a></br>
 # Sidebar
 sidebar: right
 widgets:
